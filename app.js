@@ -9,17 +9,18 @@ const Header =  () => {
   );
 }
 
-const Player () => {
+const Player = () => {
   return (
     <div className="player">
       <span className="player-name">
         Sanaz
       </span>
+      <Counter />
     </div>
   );
 }
 
-const Counter () => {
+const Counter =  () => {
   return (
     <div className="counter">
       <button className="counter-action decrement"> - </button>
@@ -29,8 +30,19 @@ const Counter () => {
   );
 }
 
+const App = () => {
+  return (
+    <div className="scoreboard">
+      <Header />
+
+      {/* Players list*/}
+      <Player />
+    </div>
+  );
+}
+
 
 ReactDOM.render (
-  <Header />,
+  <App />,
   document.getElementById("root")
 );
