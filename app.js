@@ -39,17 +39,25 @@ const Player = (props) => {
       <span className="player-name">
         { props.name}
       </span>
-      <Counter score={ props.score } />
+      <Counter />
     </div>
   );
 }
 
 class Counter extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      score: 0
+    };
+  }
+
   render() {
     return (
       <div className="counter">
         <button className="counter-action decrement"> - </button>
-        <span className="counter-score"> {this.props.score}</span>
+        <span className="counter-score"> {this.state.score}</span>
         <button className="counter-action increment"> + </button>
       </div>
       );
@@ -68,7 +76,6 @@ const App = (props) => {
       {props.initialPlayers.map( player =>
         <Player
           name={player.name}
-          score={player.score}
           key={player.id.toString()}
         />
 
