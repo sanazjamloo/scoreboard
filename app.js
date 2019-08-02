@@ -10,11 +10,11 @@ const Header =  (props) => {
   );
 }
 
-const Player = () => {
+const Player = (props) => {
   return (
     <div className="player">
       <span className="player-name">
-        Sanaz
+        { props.name}
       </span>
       <Counter />
     </div>
@@ -34,10 +34,13 @@ const Counter =  () => {
 const App = () => {
   return (
     <div className="scoreboard">
-      <Header title="Scoreboard" totalPlayers={1} />
+      <Header
+        title="Scoreboard"
+        totalPlayers={1}
+      />
 
       {/* Players list*/}
-      <Player />
+      <Player name="Sanaz" score={50}/>
     </div>
   );
 }
