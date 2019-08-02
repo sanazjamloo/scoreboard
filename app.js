@@ -1,26 +1,3 @@
-const players = [
-  {
-  name: "Sanaz",
-  score: 50,
-  id: 1
-},
-{
-  name: "Rosie",
-  score: 90,
-  id: 2
-},
-{
-  name: "Emilliano",
-  score: 80,
-  id: 3
-},
-{
-  name: "Tina",
-  score: 85,
-  id: 4
-}
-];
-
 // Defining the components as JS function
 //React components are required to start with uppercase letters.
 const Header =  (props) => {
@@ -52,15 +29,15 @@ state = {
 
 // event handler for the scores
   incrementScore = () => {
-    this.setState({
-      score: this.state.score + 1
-    });
+    this.setState( prevState => ({
+      score: prevState.score + 1
+    }));
   }
 
   decrementScore = () => {
-    this.setState({
-      score: this.state.score -1
-    });
+    this.setState( prevState => ({
+      score: prevState.score -1
+    }));
   }
 
   render() {
@@ -74,28 +51,51 @@ state = {
     }
   }
 
-const App = (props) => {
-  return (
-    <div className="scoreboard">
-      <Header
-        title="Scoreboard"
-        totalPlayers={props.initialPlayers.length}
-      />
+class App extends React.Component {
 
-      {/* Players list*/}
-      {props.initialPlayers.map( player =>
-        <Player
-          name={player.name}
-          key={player.id.toString()}
+  state = {
+      players: [
+        {
+        name: "Sanaz",
+        id: 1
+      },
+      {
+        name: "Rosie",
+        id: 2
+      },
+      {
+        name: "Emilliano",
+        id: 3
+      },
+      {
+        name: "Tina",
+        id: 4
+      }
+    ]
+  };
+  render() {
+    return (
+      <div className="scoreboard">
+        <Header
+          title="Scoreboard"
+          totalPlayers={this.state.players.length}
         />
 
-      )}
-    </div>
-  );
+        {/* Players list*/}
+        {this.state.players.map( player =>
+          <Player
+            name={player.name}
+            key={player.id.toString()}
+          />
+
+        )}
+      </div>
+    );
+  }
 }
 
 
 ReactDOM.render (
-  <App initialPlayers={players} />,
+  <App />,
   document.getElementById("root")
 );
