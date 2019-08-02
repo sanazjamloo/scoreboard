@@ -1,3 +1,22 @@
+const players = [
+  {
+  name: "Sanaz",
+  score: 50
+},
+{
+  name: "Rosie",
+  score: 90
+},
+{
+  name: "Emilliano",
+  score: 80
+},
+{
+  name: "Tina",
+  score: 85
+}
+];
+
 // Defining the components as JS function
 //React components are required to start with uppercase letters.
 const Header =  (props) => {
@@ -31,7 +50,7 @@ const Counter =  (props) => {
   );
 }
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="scoreboard">
       <Header
@@ -40,13 +59,19 @@ const App = () => {
       />
 
       {/* Players list*/}
-      <Player name="Sanaz" score={50}/>
+      {props.initialPlayers.map( player =>
+        <Player
+          name={player.name}
+          score={player.score}
+        />
+
+      )}
     </div>
   );
 }
 
 
 ReactDOM.render (
-  <App />,
+  <App initialPlayers={players} />,
   document.getElementById("root")
 );
